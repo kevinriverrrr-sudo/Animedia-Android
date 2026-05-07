@@ -3,36 +3,32 @@ package com.animedia.app.model;
 import java.io.Serializable;
 
 public class AnimeItem implements Serializable {
-    private int id;
+    private String id;
     private String title;
     private String posterUrl;
-    private String backdropUrl;
+    private String detailUrl;
     private String timeInfo;
     private String episodeInfo;
     private int episodeNumber;
     private String badge;
     private String description;
+    private String subTitle;
     private String year;
     private String status;
     private String rating;
     private String type;
+    private String studio;
+    private String season;
+    private String totalEpisodesText;
+    private int totalEpisodes;
     private String[] genres;
     private boolean isFavorite;
-    private int totalEpisodes;
+    private boolean is3D;
 
     public AnimeItem() {}
 
-    public AnimeItem(int id, String title, String posterUrl, String timeInfo, String episodeInfo, int episodeNumber) {
-        this.id = id;
-        this.title = title;
-        this.posterUrl = posterUrl;
-        this.timeInfo = timeInfo;
-        this.episodeInfo = episodeInfo;
-        this.episodeNumber = episodeNumber;
-    }
-
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
@@ -40,8 +36,8 @@ public class AnimeItem implements Serializable {
     public String getPosterUrl() { return posterUrl; }
     public void setPosterUrl(String posterUrl) { this.posterUrl = posterUrl; }
 
-    public String getBackdropUrl() { return backdropUrl; }
-    public void setBackdropUrl(String backdropUrl) { this.backdropUrl = backdropUrl; }
+    public String getDetailUrl() { return detailUrl; }
+    public void setDetailUrl(String detailUrl) { this.detailUrl = detailUrl; }
 
     public String getTimeInfo() { return timeInfo; }
     public void setTimeInfo(String timeInfo) { this.timeInfo = timeInfo; }
@@ -58,6 +54,9 @@ public class AnimeItem implements Serializable {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
+    public String getSubTitle() { return subTitle; }
+    public void setSubTitle(String subTitle) { this.subTitle = subTitle; }
+
     public String getYear() { return year; }
     public void setYear(String year) { this.year = year; }
 
@@ -70,12 +69,36 @@ public class AnimeItem implements Serializable {
     public String getType() { return type; }
     public void setType(String type) { this.type = type; }
 
+    public String getStudio() { return studio; }
+    public void setStudio(String studio) { this.studio = studio; }
+
+    public String getSeason() { return season; }
+    public void setSeason(String season) { this.season = season; }
+
+    public String getTotalEpisodesText() { return totalEpisodesText; }
+    public void setTotalEpisodesText(String text) { this.totalEpisodesText = text; }
+
+    public int getTotalEpisodes() { return totalEpisodes; }
+    public void setTotalEpisodes(int totalEpisodes) { this.totalEpisodes = totalEpisodes; }
+
     public String[] getGenres() { return genres; }
     public void setGenres(String[] genres) { this.genres = genres; }
 
     public boolean isFavorite() { return isFavorite; }
     public void setFavorite(boolean favorite) { isFavorite = favorite; }
 
-    public int getTotalEpisodes() { return totalEpisodes; }
-    public void setTotalEpisodes(int totalEpisodes) { this.totalEpisodes = totalEpisodes; }
+    public boolean is3D() { return is3D; }
+    public void set3D(boolean d) { is3D = d; }
+
+    public String getFullPosterUrl() {
+        if (posterUrl == null) return "";
+        if (posterUrl.startsWith("http")) return posterUrl;
+        return "https://amd.online" + posterUrl;
+    }
+
+    public String getFullDetailUrl() {
+        if (detailUrl == null) return "";
+        if (detailUrl.startsWith("http")) return detailUrl;
+        return "https://amd.online" + detailUrl;
+    }
 }

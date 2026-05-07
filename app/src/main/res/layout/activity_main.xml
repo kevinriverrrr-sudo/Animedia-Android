@@ -85,8 +85,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/ic_search"
-                        android:contentDescription="Поиск"
-                        app:tint="@color/text_hint" />
+                        android:contentDescription="@string/search_hint" />
 
                     <TextView
                         android:layout_width="0dp"

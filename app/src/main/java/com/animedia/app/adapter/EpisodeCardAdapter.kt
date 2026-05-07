@@ -2,8 +2,6 @@ package com.animedia.app.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +10,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.animedia.app.AnimeDetailActivity
 import com.animedia.app.R
-import com.animedia.app.data.DataProvider
 import com.animedia.app.model.AnimeItem
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 
 class EpisodeCardAdapter(
     private val items: List<AnimeItem>,
@@ -37,31 +37,39 @@ class EpisodeCardAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
 
-        holder.txtTitle.text = item.title
-        holder.txtTime.text = item.timeInfo
-        holder.txtEpisodeInfo.text = item.episodeInfo
+        holder.txtTitle.text = item.title ?: ""
+        holder.txtTime.text = item.timeInfo ?: ""
+        holder.txtEpisodeInfo.text = item.episodeInfo ?: ""
 
-        // Show episode badge
         if (item.episodeNumber > 0) {
             holder.txtEpisodeBadge.visibility = View.VISIBLE
             holder.txtEpisodeBadge.text = item.episodeNumber.toString()
+        } else {
+            holder.txtEpisodeBadge.visibility = View.GONE
         }
 
-        // Generate placeholder color for poster
-        val color = DataProvider.getRandomColor()
-        val drawable = GradientDrawable(
-            GradientDrawable.Orientation.TL_BR,
-            intArrayOf(Color.parseColor(color), Color.parseColor("#1A1A2E"))
-        )
-        drawable.cornerRadius = 12f
-        holder.imgPoster.background = drawable
+        // Load real image with Glide
+        val posterUrl = item.fullPosterUrl
+        if (posterUrl.isNotEmpty()) {
+            Glide.with(context)
+                .load(posterUrl)
+                .apply(RequestOptions()
+                    .placeholder(R.color.surface_elevated)
+                    .error(R.color.surface_elevated)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop())
+                .into(holder.imgPoster)
+        }
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, AnimeDetailActivity::class.java).apply {
-                putExtra("anime_id", item.id)
-                putExtra("anime_title", item.title)
+            if (item.detailUrl != null && item.detailUrl!!.isNotEmpty()) {
+                val intent = Intent(context, AnimeDetailActivity::class.java).apply {
+                    putExtra("anime_url", item.detailUrl)
+                    putExtra("anime_id", item.id ?: "")
+                    putExtra("anime_title", item.title ?: "")
+                }
+                context.startActivity(intent)
             }
-            context.startActivity(intent)
         }
     }
 
