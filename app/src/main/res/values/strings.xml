@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Animedia</string>
+    <string name="search_hint">Поиск аниме…</string>
+    <string name="new_episodes">Новые серии</string>
+    <string name="today_releases">Сегодня выйдет</string>
+    <string name="new_anime">Новые аниме</string>
+    <string name="top_clans">Топ кланы</string>
+    <string name="collections">Подборки</string>
+    <string name="reviews">Рецензии</string>
+    <string name="schedule">Расписание</string>
+    <string name="top_100">Топ 100</string>
+    <string name="genres">Жанры</string>
+    <string name="favorites">Избранное</string>
+    <string name="history">История</string>
+    <string name="profile">Профиль</string>
+    <string name="settings">Настройки</string>
+    <string name="home">Главная</string>
+    <string name="catalog">Каталог</string>
+    <string name="chat">Чат</string>
+    <string name="episode">серия</string>
+    <string name="today">Сегодня</string>
+    <string name="rating">Рейтинг</string>
+    <string name="year">Год</string>
+    <string name="status">Статус</string>
+    <string name="type">Тип</string>
+    <string name="episodes_count">Эпизоды</string>
+    <string name="description">Описание</string>
+    <string name="comments">Комментарии</string>
+    <string name="watch_now">Смотреть</string>
+    <string name="add_to_favorites">В избранное</string>
+    <string name="share">Поделиться</string>
+    <string name="telegram">Telegram</string>
+    <string name="premium">PREMIUM</string>
+    <string name="filter">Фильтр</string>
+    <string name="login">Войти</string>
+    <string name="register">Регистрация</string>
+    <string name="ongoing">Онгоинги</string>
+    <string name="completed">Завершённые</string>
+    <string name="announced">Анонсированные</string>
+</resources>
